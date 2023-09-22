@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho Classes</title>
+</head>
+<body>
+    <script>
+        class pessoa{
+            nome;
+            cpf;
+            constructor(cpf, nome){
+                this.nome = nome;
+                this.cpf = cpf;
+            }
+        }
+        class professor extends pessoa{
+            area;
+            telefone;
+            constructor (nome, cpf, area, telefone){
+                super(cpf, nome);
+                this.area = area;
+                this.telefone = telefone;
+            }
+        }
+        class aluno extends pessoa{
+            matricula;
+            constructor(nome, cpf, matricula){
+                super(cpf, nome);
+                this.matricula = matricula;
+            }
+        }
+        class turma{
+            professor;
+            alunos;
+            identificacao;
+            constructor(professor, alunos, identificacao){
+                this.professor = professor;
+                this.alunos = alunos;
+                this.identificacao = identificacao;
+            }
+            imprimeDados(){
+                let div = document.createElement("div");
+                let dados = "<h2>Turma " + this.identificacao + "</h2>";
+                dados += "<h3>Professor:</h3>";
+                dados += "<p>";
+                dados += "Nome: " + this.professor.nome;
+                dados += "<br>";
+                dados += "CPF: " + this.professor.cpf;
+                dados += "<br>";
+                dados += "Área: " + this.professor.area;
+                dados += "<br>";
+                dados += "Telefone: " + this.professor.telefone;
+                dados += "</p>";
+                dados += "<h3>Alunos:</h3>";
+                for(let c = 0; c < this.alunos.length; c++){
+                    dados += "<p>";
+                    dados += "Nome: " + this.alunos[c].nome;
+                    dados += "<br>";
+                    dados += "CPF: " + this.alunos[c].cpf;
+                    dados += "<br>";
+                    dados += "Matrícula: " + this.alunos[c].matricula;
+                    dados += "</p>";
+                }
+                div.innerHTML=dados;
+                document.body.appendChild(div);
+            }
+        }
+        let prof1 = new professor("Cauã Santos", "12345678900", "Geografia", "(53)99111-2233");
+        let prof2 = new professor("Carla Martins", "12345678901", "Filosofia", "(53)98144-5566");
+        let alun1 = new aluno("Isabella Rosa", "12345678902", "0001");
+        let alun2 = new aluno("João dos Santos", "12345678903", "0002");
+        let alun3 = new aluno("Pedro Oliveira", "12345678904", "0003");
+        let alun4 = new aluno("Arthur Costa", "12345678905", "0004");
+        let alun5 = new aluno("Rafael Silva", "12345678906", "0005");
+        let alun6 = new aluno("Maria Costa", "12345678907", "0006");
+        let turma1 = new turma(prof1, [alun1,alun2,alun3,alun4], "1");
+        let turma2 = new turma(prof2, [alun3,alun4,alun5,alun6], "2");
+        turma1.imprimeDados();
+        turma2.imprimeDados();
+    </script>
+</body>
+</html>
